@@ -11,8 +11,32 @@ function updateProductNumber(product, price, isIncreasing){
 
     const productTotal = document.getElementById(product + '-total');
     productTotal.innerText = productNumber * price;
+    calculateTotal();
 
 }
+
+function getIpnutValue(product){
+    const phoneTotal = document.getElementById(product + '-number');
+    const productNumber = parseInt(phoneTotal.value);
+    return productNumber;
+}
+
+function calculateTotal(){
+    const phoneTotal = getIpnutValue('phone') * 1219;
+    const caseTotal = getIpnutValue('case') * 59;
+    const subTotal = phoneTotal + caseTotal;
+    const tax = subTotal / 10; 
+    const total = subTotal + tax;
+
+    
+    
+    //update on the html
+    document.getElementById('sub-total').innerText = subTotal;
+    document.getElementById('tax').innerText = tax;
+    document.getElementById('total').innerText = total;
+    
+}
+
 // phone increase decrease event 
 document.getElementById('phone-plus').addEventListener('click', function(){
     updateProductNumber('phone', 1229, true);
@@ -24,14 +48,12 @@ document.getElementById('phone-minus').addEventListener('click', function(){
 
 // handle case increas decrese envetn. 
 document.getElementById('case-plus').addEventListener('click', function(){
-   updateProductNumber('case', 59, true);
-    
+   updateProductNumber('case', 59, true);   
 })
 
 
 document.getElementById('case-minus').addEventListener('click', function(){
     console.log('click');
-
     updateProductNumber('case', 59, false);
     
 })
@@ -46,34 +68,7 @@ document.getElementById('case-minus').addEventListener('click', function(){
 
 
 
-/* 
-function updateCaseNumber(isIncreasing){
-    const  caseInput = document.getElementById('case-number');
-    let caseNumber = caseInput.value;
-    if(isIncreasing == true){   
-        caseNumber = parseInt(caseNumber) + 1; 
-
-    }
-    else if(caseNumber > 0) {
-        caseNumber = parseInt(caseNumber) - 1; 
-    }
-    caseInput.value = caseNumber;
-
-    const caseTotal = document.getElementById('case-total');
-    caseTotal.innerText = caseNumber * 59;
+document.getElementById('check-out').addEventListener('click', function(){
+    alert('This is demo. Thank you for clicking');
     
-
-}
-
-
-document.getElementById('case-plus').addEventListener('click', function(){
-    updateCaseNumber(true);
 })
-
-document.getElementById('case-minus').addEventListener('click', function(){
-    updateCaseNumber(false);
-
-})
-
-
- */
